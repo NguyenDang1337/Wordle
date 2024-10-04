@@ -1,0 +1,171 @@
+@font-face {
+    font-family: 'ClearSans'; /* Name your font family */
+    src: url("clear-sans/ClearSans-Regular.ttf"); /* Locate the .ttf file within your directory*/
+
+    font-family: "ClearSans-Bold";
+    src: url("clear-sans/ClearSans-Bold.ttf");
+  }
+
+hr {
+    width: 500px;
+}
+
+@keyframes color{
+    0%{
+        background-position: 0, 50%;
+    }
+    50%{
+        background-position: 100%, 50%;
+    }
+    0%{
+        background-position: 0, 50%;
+    }
+}
+
+
+
+body{
+    font-family: "ClearSans", sans-serif;
+    background-color: #171717;
+}
+
+hr {
+    width: 500px;
+}
+
+#GameName{
+    font-family: "ClearSans-Bold", sans-serif;
+    font-weight: bold;
+    font-size: 45px;
+    letter-spacing: 2px;
+    color: white;
+    line-height: 12px;
+
+    text-align: center;
+}
+
+/*-----------------Animating and styling board-------------------*/
+
+
+#Board{
+    background-color: black;
+    width: 350px;
+    height: 420px;
+    border-radius: 10px;
+    position: relative;
+
+    margin: auto;
+    margin-top: 6px;
+    display: flex;     /*Keep text box inside the board */
+    flex-wrap: wrap;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+    /* padding: 10px; */
+    box-sizing: border-box;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+#Board::after, #Board::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    width:100%;
+    top : 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+
+
+    /* background-image: conic-gradient(from var(--angle), transparent 20%, blue); */
+    background-image: conic-gradient(from var(--angle),#ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+    border-radius: 10px;
+    padding: 5px;
+
+    animation: 4s spin linear infinite
+}
+
+#Board::before{
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+@keyframes spin{
+    from{
+        --angle : 0deg
+    }
+    to{
+        --angle : 360deg
+    }
+}
+
+.glass{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
+}
+
+/*-----------------------------------------------*/
+
+
+.box{
+    border: 2px solid lightgray;
+    width: 60px;
+    height: 60px;
+    margin: 2.5px;
+    
+    /* Text */
+    color: black;  /*May change color*/
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square {
+            display: flex;
+            border: 2px solid rgb(58, 58, 60);
+            /* border: 2px solid {{ container_color }}; */
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            min-height: 60px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+.square.correct{                                       /*Player guess correct character at correct position*/
+    background-color: lightgreen;
+    color: white;
+    border-color: white;
+}
+
+.square.present{                                       /*Player guess correct character, but not at correct position*/
+    background-color: goldenrod;
+    color: white;
+    border-color: white;
+}
+
+.square.absent{                                        /*Player guess incorrect character*/
+    background-color: darkgray;
+    color: white;
+    border-color:white;
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    size: 1000px;
+    box-sizing: border-box;
+}

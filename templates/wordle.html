@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+
+<html>
+
+
+<!--------------------------------------- Head ------------------------------------------>
+
+<head>
+    <title>Wordle</title>
+    <meta content="width=device-width, initial-scale=0, user-scalable=no">
+
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'wordle.css') }}">
+
+</head>
+
+<!----------------------------------------Body ----------------------------------------->
+
+<body>  
+    <h1 id = "GameName">WORDLE</h1>
+    <hr>
+    <br>
+
+    <div id="Board">
+        <div class="square {{color1}}" id="1">{{letter1}}</div>
+        <div class="square {{color2}}" id="2">{{letter2}}</div>
+        <div class="square {{color3}}" id="3">{{letter3}}</div>     
+        <div class="square {{color4}}" id="4">{{letter4}}</div>
+        <div class="square {{color5}}" id="5">{{letter5}}</div>
+        <div class="square {{color6}}" id="6">{{letter6}}</div>
+        <div class="square {{color7}}" id="7">{{letter7}}</div>
+        <div class="square {{color8}}" id="8">{{letter8}}</div>
+        <div class="square {{color9}}" id="9">{{letter9}}</div>
+        <div class="square {{color10}}" id="10">{{letter10}}</div>
+        <div class="square {{color11}}" id="11">{{letter11}}</div>
+        <div class="square {{color12}}" id="12">{{letter12}}</div>
+        <div class="square {{color13}}" id="13">{{letter13}}</div>
+        <div class="square {{color14}}" id="14">{{letter14}}</div>
+        <div class="square {{color15}}" id="15">{{letter15}}</div>
+        <div class="square {{color16}}" id="16">{{letter16}}</div>
+        <div class="square {{color17}}" id="17">{{letter17}}</div>
+        <div class="square {{color18}}" id="18">{{letter18}}</div>
+        <div class="square {{color19}}" id="19">{{letter19}}</div>
+        <div class="square {{color20}}" id="20">{{letter20}}</div>
+        <div class="square {{color21}}" id="21">{{letter21}}</div>
+        <div class="square {{color22}}" id="22">{{letter22}}</div>
+        <div class="square {{color23}}" id="23">{{letter23}}</div>
+        <div class="square {{color24}}" id="24">{{letter24}}</div>
+        <div class="square {{color25}}" id="25">{{letter25}}</div>
+        <div class="square {{color26}}" id="26">{{letter26}}</div>
+        <div class="square {{color27}}" id="27">{{letter27}}</div>
+        <div class="square {{color28}}" id="28">{{letter28}}</div>
+        <div class="square {{color29}}" id="29">{{letter29}}</div>
+        <div class="square {{color30}}" id="30">{{letter30}}</div>
+    </div>
+
+    <div class="form-container">
+        <form method="POST" action="/wordle">
+            <!-- <label for="inputGotten">Input:</label> -->
+            <input type="text" maxlength="5" id="inputGotten" name="inputGotten">
+            <input type="submit" value="Guess">
+        </form>
+
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+        <p id="GameName">{{ input }}</p>
+    </div>
+
+</body>
+
+</html>
