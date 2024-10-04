@@ -52,6 +52,7 @@ return_command = "'"
 
 
 goal_word = chooseWord(listofWords)
+goal_word_data = ""
 print(goal_word)
 
 app = Flask(__name__)
@@ -59,6 +60,11 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/win', methods=['GET', 'POST'])
+def win_page():
+    return render_template('win.html')
+
 
 @app.route('/wordle', methods=['GET', 'POST'])
 def wordle():
@@ -104,6 +110,8 @@ def wordle():
     global color28 
     global color29 
     global color30
+
+    global goal_word_data
 
     if request.method == 'POST':
         input_gotten = request.form.get('inputGotten')
@@ -156,10 +164,10 @@ def wordle():
                     color3 = ""
                     color4 = ""
                     color5 = ""
-
+                    goal_word_data = goal_word
                     goal_word = chooseWord(listofWords)
                     print(goal_word)
-                    return render_template("index.html")
+                    return render_template("win.html")
                 
                 turn = 2
                 return render_template('wordle.html', input=input_gotten_upper, letter1=input_turn1[0], letter2=input_turn1[1], letter3=input_turn1[2], letter4=input_turn1[3], letter5=input_turn1[4], color1=color1, color2=color2, color3=color3, color4=color4, color5=color5)
@@ -216,9 +224,10 @@ def wordle():
                     color8 = ""
                     color9 = ""
                     color10 = ""
+                    goal_word_data = goal_word
                     goal_word = chooseWord(listofWords)
                     print(goal_word)
-                    return render_template("index.html")
+                    return render_template("win.html")
                 
                 turn = 3
                 return render_template(
@@ -286,9 +295,10 @@ def wordle():
                     color13 = ""
                     color14 = ""
                     color15 = ""
+                    goal_word_data = goal_word
                     goal_word = chooseWord(listofWords)
                     print(goal_word)
-                    return render_template("index.html")
+                    return render_template("win.html")
                 
                 turn = 4
                 return render_template(
@@ -363,9 +373,10 @@ def wordle():
                     color18 = ""
                     color19 = ""
                     color20 = ""
+                    goal_word_data = goal_word
                     goal_word = chooseWord(listofWords)
                     print(goal_word)
-                    return render_template("index.html")
+                    return render_template("win.html")
                 
                 turn = 5
                 return render_template(
@@ -446,9 +457,10 @@ def wordle():
                     color23 = ""
                     color24 = ""
                     color25 = ""
+                    goal_word_data = goal_word
                     goal_word = chooseWord(listofWords)
                     print(goal_word)
-                    return render_template("index.html")
+                    return render_template("win.html")
                 
                 turn = 6
                 return render_template(
@@ -536,9 +548,10 @@ def wordle():
                     color28 = ""
                     color29 = ""
                     color30 = ""
+                    goal_word_data = goal_word
                     goal_word = chooseWord(listofWords)
                     print(goal_word)
-                    return render_template("index.html")
+                    return render_template("win.html")
                 
                 turn = "end"
                 return render_template(
@@ -551,18 +564,17 @@ def wordle():
                 )
 
             elif turn == "end":
-                
-                if input_gotten != "rtn":
-                    return render_template(
-                    'wordle.html', input="You lose (type 'rtn' to exit)", letter1=input_turn1[0], letter2=input_turn1[1], letter3=input_turn1[2], letter4=input_turn1[3], letter5=input_turn1[4], color1=color1, color2=color2, color3=color3, color4=color4, color5=color5,
-                                                             letter6=input_turn2[0], letter7=input_turn2[1], letter8=input_turn2[2], letter9=input_turn2[3], letter10=input_turn2[4], color6=color6, color7=color7, color8=color8, color9=color9, color10=color10,
-                                                             letter11=input_turn3[0], letter12=input_turn3[1], letter13=input_turn3[2], letter14=input_turn3[3], letter15=input_turn3[4], color11=color11, color12=color12, color13=color13, color14=color14, color15=color15,
-                                                             letter16=input_turn4[0], letter17=input_turn4[1], letter18=input_turn4[2], letter19=input_turn4[3], letter20=input_turn4[4], color16=color16, color17=color17, color18=color18, color19=color19, color20=color20,
-                                                             letter21=input_turn5[0], letter22=input_turn5[1], letter23=input_turn5[2], letter24=input_turn5[3], letter25=input_turn5[4], color21=color21, color22=color22, color23=color23, color24=color24, color25=color25,
-                                                             letter26=input_turn6[0], letter27=input_turn6[1], letter28=input_turn6[2], letter29=input_turn6[3], letter30=input_turn6[4], color26=color26, color27=color27, color28=color28, color29=color29, color30=color30,
-                )
+                if input_gotten == "rtn":
+                    return render_template("index.html")
                 else:
-                    render_template("index.html")
+                    return render_template(
+                        'wordle.html', input="You lose (type 'rtn' to exit)", letter1=input_turn1[0], letter2=input_turn1[1], letter3=input_turn1[2], letter4=input_turn1[3], letter5=input_turn1[4], color1=color1, color2=color2, color3=color3, color4=color4, color5=color5,
+                                                                letter6=input_turn2[0], letter7=input_turn2[1], letter8=input_turn2[2], letter9=input_turn2[3], letter10=input_turn2[4], color6=color6, color7=color7, color8=color8, color9=color9, color10=color10,
+                                                                letter11=input_turn3[0], letter12=input_turn3[1], letter13=input_turn3[2], letter14=input_turn3[3], letter15=input_turn3[4], color11=color11, color12=color12, color13=color13, color14=color14, color15=color15,
+                                                                letter16=input_turn4[0], letter17=input_turn4[1], letter18=input_turn4[2], letter19=input_turn4[3], letter20=input_turn4[4], color16=color16, color17=color17, color18=color18, color19=color19, color20=color20,
+                                                                letter21=input_turn5[0], letter22=input_turn5[1], letter23=input_turn5[2], letter24=input_turn5[3], letter25=input_turn5[4], color21=color21, color22=color22, color23=color23, color24=color24, color25=color25,
+                                                                letter26=input_turn6[0], letter27=input_turn6[1], letter28=input_turn6[2], letter29=input_turn6[3], letter30=input_turn6[4], color26=color26, color27=color27, color28=color28, color29=color29, color30=color30,
+                    )
                        
 
         else:
@@ -606,7 +618,7 @@ def wordle():
                                                              letter16=input_turn4[0], letter17=input_turn4[1], letter18=input_turn4[2], letter19=input_turn4[3], letter20=input_turn4[4], color16=color16, color17=color17, color18=color18, color19=color19, color20=color20,
                                                              letter21=input_turn5[0], letter22=input_turn5[1], letter23=input_turn5[2], letter24=input_turn5[3], letter25=input_turn5[4], color21=color21, color22=color22, color23=color23, color24=color24, color25=color25,
                                                              letter26=input_turn6[0], letter27=input_turn6[1], letter28=input_turn6[2], letter29=input_turn6[3], letter30=input_turn6[4], color26=color26, color27=color27, color28=color28, color29=color29, color30=color30,
-                )  
+                )
 
     return render_template('wordle.html', input=None)
 
