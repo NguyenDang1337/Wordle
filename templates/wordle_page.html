@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport", content="width=device-width, initial-scale=1.0">
+
+        <title>wordle</title>
+    </head>
+
+    <body>
+        <h1>WOrdle gam</h1>
+
+        <form method="POST", id="wordleForm">
+            <div class="letter-box">
+                {% for i in range(word_length) %}
+                    <input type="text" name="letter{{i+1}}" value="{{guess[i]}}" maxlength="1" required class="letter-input">
+                {% endfor %}
+            </div>
+            <button type="submit">submit</button>
+        </form>
+
+
+        {% if feedback %}
+            <div class="feedback">
+                {% for result in feedback %}
+                    <span class="{{result}}">{{result}}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        {% if success %}
+            <div class="success-message">
+                <p>Congratulations! You've won!</p>
+            </div>
+        {% endif %}
+
+
+        {% if error %}
+            <div class="error-message">
+                <p>Something went wrong... : {{error}}</p>
+            </div>
+        {% endif %}
+
+
+    </body>
+</html>
